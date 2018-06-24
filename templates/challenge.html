@@ -54,12 +54,12 @@ input[type=submit] {
 }
 </style>
 <div class="form-container">
-<h1>Access Check</h1>
+<h1>Restricted Access</h1>
 <form action="" method="POST" enctype="application/x-www-form-urlencoded">
     <p>If you have been given an access code to <a href="{{ .Host }}">{{ .Host }}</a>, please enter it below.</p>
     <p>Contact <a href="mailto:{{ .Contact }}">{{ .Contact }}</a> with any questions.</p>
     <label for="access-code">Access Code</label>
-    <input type="text" id="access-code" name="x-access-token">
+    <input type="text" id="access-code" name="{{ .AccessCodeName }}">
     <input type="submit" value="Submit">
 </form>
 {{if .ErrorMessage}}

@@ -3,7 +3,8 @@ services:
   access-gate:
     build: .
     environment:
-    - ACCESS_TOKEN=secret-muffin
+    - ACCESS_CODE=secret-muffin
+    - PROXY_HOST=http://example.com
     - PROXY_DEST=http://nginx
     - HOST=http://example.com
     - CONTACT=admin@example.com

@@ -1,19 +1,19 @@
 package main
 
 import (
-	"os"
-	"net/http"
-	"log"
 	"time"
-	"html/template"
-	"net/http/httputil"
+	"os"
 	"net/url"
+	"net/http"
+	"net/http/httputil"
+	"log"
+	"html/template"
 )
 
 const (
-	HeaderAccessToken = "x-access-token"
+	HeaderAccessToken = "x-access-code"
 	TemplatePathChallenge = "templates/challenge.html"
-	EnvAccessToken = "ACCESS_TOKEN"
+	EnvAccessToken = "ACCESS_CODE"
 	EnvProxyDestination = "PROXY_DEST"
 	EnvHost = "PROXY_HOST"
 	EnvContact = "CONTACT"
@@ -23,6 +23,7 @@ type ChallengePage struct {
 	ErrorMessage string
 	Host string
 	Contact string
+	AccessCodeName string
 }
 
 func CheckAccess (t *template.Template, h http.Handler) http.Handler {
@@ -36,13 +37,14 @@ func CheckAccess (t *template.Template, h http.Handler) http.Handler {
 		}
 
 		context := ChallengePage{
-			ErrorMessage: "",
 			Host: host,
+			ErrorMessage: "",
 			Contact: contact,
+			AccessCodeName: HeaderAccessToken,
 		}
 
 		if r.Method == http.MethodPost {
-			context.ErrorMessage = "Invalid Token"
+			context.ErrorMessage = "Invalid Access Code"
 			// parse the form
 			if err := r.ParseForm(); err == nil && r.PostFormValue(HeaderAccessToken) == accessToken {
 				// no error parsing the form and it has the correct
