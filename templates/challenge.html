@@ -1,0 +1,70 @@
+<style>
+.form-container {
+    width: calc(100%-1em);
+    margin: auto;
+    margin-top: 4em;
+    margin-bottom: 4em;
+    padding: 1em;
+    box-sizing: border-box;
+    max-width: 500px;
+    background-color: #fff;
+    box-shadow: 0px 5px 20px 1px #ddd;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f8f8;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 100;
+}
+
+label, input {
+    display: block;
+    margin: 1em auto;
+    text-align: center;
+}
+
+input[type=text] {
+    width: 100%;
+    font-size: 2em;
+    height: 2em;
+}
+
+p, label {
+    padding: 1em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.error-message {
+    padding: 1em;
+    box-sizing: border-box;
+    background-color: #FDD;
+    text-align: center;
+    color: #A00;
+}
+
+input[type=submit] {
+    width: calc(100% - 2em);
+    max-width: 100px;
+    padding: 0.5em;
+}
+</style>
+<div class="form-container">
+<h1>Access Check</h1>
+<form action="" method="POST" enctype="application/x-www-form-urlencoded">
+    <p>If you have been given an access code to <a href="{{ .Host }}">{{ .Host }}</a>, please enter it below.</p>
+    <p>Contact <a href="mailto:{{ .Contact }}">{{ .Contact }}</a> with any questions.</p>
+    <label for="access-code">Access Code</label>
+    <input type="text" id="access-code" name="x-access-token">
+    <input type="submit" value="Submit">
+</form>
+{{if .ErrorMessage}}
+<div class="error-message">
+    {{.ErrorMessage}}
+</div>
+{{end}}
+</div>

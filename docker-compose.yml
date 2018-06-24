@@ -1,0 +1,13 @@
+version: '3'
+services:
+  access-gate:
+    build: .
+    environment:
+    - ACCESS_TOKEN=secret-muffin
+    - PROXY_DEST=http://nginx
+    - HOST=http://example.com
+    - CONTACT=admin@example.com
+    ports:
+    - '8080:80'
+  nginx:
+    image: nginx
