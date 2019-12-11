@@ -1,6 +1,6 @@
 # Access Gate
 
-This will challenge a user to provide an __Access Code__ before allowing them access to a site. This is neither secure, robust, or a true AuthN system - instead, it is lightweight, easy to configure, and user-friendly. It is intended more to block access to short-lived sites rather than as a permenant solution.
+This will challenge a user to provide an __Access Code__ before allowing them access to a site. This is neither secure, robust, or a true AuthN system - instead, it is lightweight, easy to configure, and user-friendly. It is intended more to block access to short-lived sites rather than as a permenant solution. __Very Important__: see again that this is not secure. Do not make your access code a password to a different system. It will be stored in plain text on the client machine.
 
 ## Environment Variables
 
