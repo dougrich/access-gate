@@ -31,6 +31,7 @@ func CheckAccess (t *template.Template, h http.Handler) http.Handler {
 	host := os.Getenv(EnvHost)
 	contact := os.Getenv(EnvContact)
 	return http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("X-Robots-Tag", "noindex")
 		if cookie, err := r.Cookie(HeaderAccessToken); err == nil && cookie.String() != accessToken {
 			h.ServeHTTP(w, r)
 			return
@@ -55,7 +56,7 @@ func CheckAccess (t *template.Template, h http.Handler) http.Handler {
 				}
 				http.SetCookie(w, &cookie)
 				w.Header().Set("Location", r.URL.Path)
-				w.WriteHeader(307)
+				w.WriteHeader(303)
 				return
 			}
 		}
