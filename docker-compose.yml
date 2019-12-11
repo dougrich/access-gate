@@ -2,6 +2,7 @@ version: '3'
 services:
   access-gate:
     build: .
+    image: dougrich/access-gate
     environment:
     - ACCESS_CODE=secret-muffin
     - PROXY_HOST=http://example.com
