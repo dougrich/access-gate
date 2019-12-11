@@ -16,7 +16,6 @@ const (
 	EnvAccessToken = "ACCESS_CODE"
 	EnvProxyDestination = "PROXY_DEST"
 	EnvHost = "PROXY_HOST"
-	EnvContact = "CONTACT"
 )
 
 type ChallengePage struct {
@@ -29,7 +28,6 @@ type ChallengePage struct {
 func CheckAccess (t *template.Template, h http.Handler) http.Handler {
 	accessToken := os.Getenv(EnvAccessToken)
 	host := os.Getenv(EnvHost)
-	contact := os.Getenv(EnvContact)
 	return http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("X-Robots-Tag", "noindex")
 		if cookie, err := r.Cookie(HeaderAccessToken); err == nil && cookie.String() != accessToken {
@@ -40,7 +38,6 @@ func CheckAccess (t *template.Template, h http.Handler) http.Handler {
 		context := ChallengePage{
 			Host: host,
 			ErrorMessage: "",
-			Contact: contact,
 			AccessCodeName: HeaderAccessToken,
 		}
 

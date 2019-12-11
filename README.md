@@ -9,5 +9,3 @@ This will challenge a user to provide an __Access Code__ before allowing them ac
 `PROXY_DEST` is the domain that requests will be proxy'd to after the user has provided the correct access code. This domain is not directly exposed to the user.
 
 `PROXY_HOST` is the friendly host that is exposed to the user.
-
-`CONTACT` is the email address of who users should contact.

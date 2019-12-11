@@ -3,67 +3,96 @@
     <head>
         <meta name="robots" content="noindex" />
         <style>
-        .form-container {
-            width: calc(100%-1em);
-            margin: auto;
-            margin-top: 4em;
-            margin-bottom: 4em;
-            padding: 1em;
-            box-sizing: border-box;
-            max-width: 500px;
-            background-color: #fff;
-            box-shadow: 0px 5px 20px 1px #ddd;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f8f8f8;
-        }
-
-        h1 {
+          body {
+            background: repeating-linear-gradient(
+              45deg,
+              #FFF,
+              #FFF 7px,
+              #F5F5F5 7px,
+              #F5F5F5 10px,
+              #FFF 10px
+            );
+            height: 100vh;
+            width: 100vw;
+            font-family: sans-serif;
+          }
+    
+          html, body { padding: 0; margin: 0; }
+    
+          .container {
+            width: 400px;
+            padding: 16px;
+            background-color: white;
+            border: 3px solid #F5F5F5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+    
+          .container:before, .container:after {
+            content: '';
+            width: 0px;
+            height: 0px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border: 50px solid #F5F5F5;
+            position: absolute;
+            left: 50%;
+            pointer-events: none;
+          }
+    
+          .container:before {
+            top: 0px;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+          }
+    
+          .container:after {
+            top: 100%;
+            border-left-color: transparent;
+            border-top-color: transparent;
+          }
+    
+          h1 {
             text-align: center;
-            font-weight: 100;
-        }
+          }
 
-        label, input {
-            display: block;
-            margin: 1em auto;
-            text-align: center;
-        }
+            .error-message {
+                padding: 1em;
+                box-sizing: border-box;
+                background-color: #FDD;
+                text-align: center;
+                color: #A00;
+            }
 
-        input[type=text] {
-            width: 100%;
-            font-size: 2em;
-            height: 2em;
-        }
+            label, input {
+                display: block;
+                margin: 1em auto;
+                text-align: center;
+            }
 
-        p, label {
-            padding: 1em;
-            line-height: 1.5em;
-            text-align: center;
-        }
+            label {
+                font-weight: bold;
+            }
 
-        .error-message {
-            padding: 1em;
-            box-sizing: border-box;
-            background-color: #FDD;
-            text-align: center;
-            color: #A00;
-        }
+            input[type=text] {
+                width: 100%;
+                font-size: 2em;
+                height: 2em;
+            }
 
-        input[type=submit] {
-            width: calc(100% - 2em);
-            max-width: 100px;
-            padding: 0.5em;
-        }
+            input[type=submit] {
+                width: calc(100% - 2em);
+                max-width: 100px;
+                padding: 0.5em;
+            }
         </style>
     </head>
     <body>
-        <div class="form-container">
+        <section class="container">
             <h1>Restricted Access</h1>
             <form action="" method="POST" enctype="application/x-www-form-urlencoded">
                 <p>If you have been given an access code to <a href="{{ .Host }}">{{ .Host }}</a>, please enter it below.</p>
-                <p>Contact <a href="mailto:{{ .Contact }}">{{ .Contact }}</a> with any questions.</p>
                 <label for="access-code">Access Code</label>
                 <input type="text" id="access-code" name="{{ .AccessCodeName }}">
                 <input type="submit" value="Submit">
@@ -73,6 +102,6 @@
                 {{.ErrorMessage}}
             </div>
             {{end}}
-        </div>
+        </section>
     </body>
 </html>
